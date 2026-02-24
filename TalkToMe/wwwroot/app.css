@@ -1,0 +1,114 @@
+@import url('icons/all.css');
+@import url('icons/all.min.css');
+
+:root {
+    /* === Brand Colors === */
+    --primary-color: #dc3545;
+    --primary-hover: #b02a37;
+    --primary-soft: rgba(220, 53, 69, 0.1);
+    --primary-shadow: rgba(220, 53, 69, 0.4);
+    /* === Background === */
+    --bg-color: #1a0f12;
+    --surface-color: #2a1a1d;
+    --surface-light: #ffffff;
+    --surface-soft: #fff5f5;
+    /* === Text === */
+    --text-primary: #ffffff;
+    --text-secondary: #e2e8f0;
+    /* === Border === */
+    --border-color: #3a1f24;
+    --border-light: #e2e8f0;
+    /* === Shadow === */
+    --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.4);
+    --transition: all 0.3s ease;
+    /* === Font ===*/
+    --font-family-base: 'Kanit', sans-serif;
+}
+
+@font-face {
+    font-family: 'Font Awesome 7 Free';
+    src: url('webfonts/fa-solid-900.woff2') format('woff2');
+}
+
+@font-face {
+    font-family: 'kanit-regular';
+    src: url('fonts/Kanit-Regular.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'kanit-bold';
+    src: url('fonts/Kanit-Bold.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'kanit-light';
+    src: url('fonts/Kanit-Light.ttf') format('truetype');
+}
+
+h1:focus {
+    outline: none;
+}
+
+html, body {
+    font-family: var(--font-family-base);
+    color: var(--text-primary);
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+}
+
+
+.custom-input {
+    background-color: var(--surface-light) !important;
+    border: 2px solid var(--border-light) !important;
+    border-radius: 12px !important;
+    padding: 12px 20px;
+    transition: var(--transition);
+    font-size: 1rem;
+}
+
+    .custom-input:focus {
+        background-color: var(--surface-light) !important;
+        border-color: var(--primary-color) !important;
+        box-shadow: 0 0 0 4px var(--primary-soft) !important;
+    }
+
+.shadow-danger {
+    box-shadow: 0 10px 20px -5px var(--primary-shadow);
+}
+
+.btn-danger {
+    border-radius: 12px;
+    background: linear-gradient( 135deg, var(--primary-color) 0%, var(--primary-hover) 100% );
+    border: none;
+    transition: transform 0.2s;
+}
+
+    .btn-danger:hover {
+        transform: translateY(-2px);
+    }
+
+/* ---------- Utilities ---------- */
+
+.i-btn-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    transition: background-color 0.2s, color 0.2s, transform 0.1s;
+    cursor: pointer;
+}
+
+    .i-btn-icon:hover {
+        background-color: rgba(0, 0, 0, 0.05);
+        transform: scale(1.1);
+    }
+
+    .i-btn-icon:active {
+        transform: scale(0.9);
+    }
+
+    .i-btn-icon.text-danger:hover {
+        background-color: rgba(220, 53, 69, 0.1);
+    }

@@ -1,0 +1,42 @@
+﻿@implements IDisposable
+
+@if (_toasts.Any())
+{
+    <div class="toast-container">
+        @foreach (var toast in _toasts)
+        {
+            <div class="toast-card @toast.Level.ToString().ToLower()">
+                <div class="toast-content">@toast.Message</div>
+            </div>
+        }
+    </div>
+}
+
+@code {
+    private List<Client.Services.ToastModel> _toasts = new();
+
+    protected override void OnInitialized()
+    {
+        // เริ่มดักฟังเมื่อ Component ถูกสร้าง
+        ToastService.OnShow += HandleShow;
+    }
+
+    private void HandleShow(string message, Client.Services.ToastLevel level)
+    {
+        var toast = new Client.Services.ToastModel { Message = message, Level = level };
+        _toasts.Add(toast);
+        InvokeAsync(StateHasChanged);
+
+        // ตั้งเวลาลบ
+        _ = Task.Delay(4000).ContinueWith(_ => {
+            _toasts.Remove(toast);
+            InvokeAsync(StateHasChanged);
+        });
+    }
+
+    public void Dispose()
+    {
+        // สำคัญมาก: ต้องยกเลิกการดักฟังเมื่อเลิกใช้ เพื่อป้องกัน Memory Leak
+        ToastService.OnShow -= HandleShow;
+    }
+}

@@ -1,0 +1,11 @@
+services:
+  license:
+    image: 192.168.200.110:1337/dptfproject/dptf/factory/other/talktome:01    
+    container_name: talktome
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./mylogs:/app/logs # Map โฟลเดอร์ logs ในเครื่อง เข้ากับใน Container
+    environment:
+      - DOTNET_ENVIRONMENT=Development
+    restart: always

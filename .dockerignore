@@ -1,0 +1,15 @@
+# Ignore build and project files
+**/bin/
+**/obj/
+**/app/publish/
+
+# Ignore source control files
+.git
+.gitignore
+.gitattributes
+
+# Ignore IDE files
+.vscode
+.vs
+*.sln
+*.user

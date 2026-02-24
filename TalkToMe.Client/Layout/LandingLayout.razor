@@ -1,0 +1,32 @@
+﻿@inherits LayoutComponentBase
+
+<div class="min-vh-100 d-flex flex-column" style="background: radial-gradient(circle at top right, #ffffff 0%, #e2e8f0 100%); font-family: 'Sarabun', sans-serif;">
+    <header class="navbar-glass py-3 mb-auto user-select-none">
+        <div class="container d-flex justify-content-between align-items-center">
+            <div class="d-flex align-items-center logo-group" style="cursor: pointer;">
+                <div class="bg-danger rounded-circle p-2 me-3 shadow-sm logo-icon-container">
+                    <i class="bi bi-mailbox2 text-white fs-4"></i>
+                </div>
+                <a href="@AppRoutes.Home" class="text-decoration-none d-inline-block brand-logo-link">
+                    <span class="fw-bold tracking-tight brand-text" style="font-size: 1.4rem; color: #1a202c;">
+                        TALK <span class="text-danger">TO ME</span>
+                    </span>
+                </a>
+            </div>
+            <a href="@AppRoutes.Dashboard" class="btn btn-link text-decoration-none text-secondary fw-semibold">
+                <i class="bi bi-person-lock me-1"></i> @L["Management"]
+            </a>
+        </div>
+    </header>
+
+    <Toast />
+    <main class="pt-3">
+        <div class="container">
+            @Body
+        </div>
+    </main>
+
+    <footer class="text-center p-4 mt-auto text-secondary-50 text-muted small">
+        &copy; @DateTime.UtcNow.Year TalkToMe Digital • @L["FooterComplaintSystem"]
+    </footer>
+</div>

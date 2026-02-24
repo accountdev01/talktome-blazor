@@ -1,0 +1,62 @@
+﻿@layout Layout.LandingLayout
+@page "/login"
+
+<PageTitle>Login</PageTitle>
+
+<div class="container d-flex justify-content-center align-items-center">
+    <div class="col-md-10 col-lg-6 col-xl-5">
+        <div class="login-card p-4 p-md-5 border-0 shadow-2xl" style="border-radius: 24px; background: #ffffff;">
+            <div class="text-center mb-4">
+                <div class="brand-logo">@L["SignIn"]</div>
+                <p class="text-muted">@L["Sub-SignIn"]</p>
+            </div>
+
+            <form method="post" action="/auth/sign-in">
+                <input type="hidden" name="ReturnUrl" value="@ReturnUrl" />
+
+                <div class="mb-3">
+                    <label class="form-label text-dark fw-medium">@L["Username"]</label>
+                    <input type="text" id="Username" name="Username" class="form-control form-control-lg custom-input" placeholder="@L["EnterUsername"]">
+                </div>
+
+                <div class="mb-4">
+                    <div class="d-flex justify-content-between">
+                        <label class="form-label text-dark fw-medium">@L["Password"]</label>
+                    </div>
+                    <input type="password" id="Password" name="Password" class="form-control form-control-lg custom-input" placeholder="•••••••••••" min="12">
+                </div>
+
+                <button type="submit" class="btn btn-danger btn-lg w-100 py-3 fw-bold mt-2 shadow-danger">
+                    @L["SignIn"]
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
+
+@code {
+    private string? Username { get; set; }
+    private string? Password { get; set; }
+
+    [SupplyParameterFromQuery(Name = "ReturnUrl")] private string ReturnUrl { get; set; } = "/";
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (!firstRender) return;
+
+        try
+        {
+            await JS.InvokeVoidAsync("blockInvalidKeys", "#Username", "^[A-Za-z_]$");
+            await JS.InvokeVoidAsync("blockInvalidKeys", "#Password", "^[A-Za-z0-9!@#$%^&*()_.+]$");
+        }
+        catch (Exception ex)
+        {
+            LogError("OnAfterRenderAsync", ex.Message);
+        }
+    }
+
+    private void LogError(string fn, string msg)
+    {
+        LoggerHelper.WriteLog($"Login -> {fn}", msg);
+    }
+}

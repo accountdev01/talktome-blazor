@@ -1,0 +1,111 @@
+﻿@inherits LayoutComponentBase
+
+<div class="page">
+    <!-- Navbar ด้านบน -->
+    <nav class="navbar">
+        <div class="nav-brand">
+            <a href="@AppRoutes.Home">
+                <div class="bg-danger rounded-3 p-2 me-3 shadow-sm logo-icon-container">
+                    <i class="bi bi-mailbox2 text-white fs-4"></i>
+                </div>
+                <span class="fw-bold tracking-tight" style="font-size: 1.4rem; color: #ffff;">TALK <span class="text-danger">TO ME</span></span>
+            </a>
+        </div>
+
+        <!-- Hamburger Menu สำหรับ Mobile -->
+        <button class="nav-toggle" @onclick="ToggleNavMenu">
+            <span class="hamburger"></span>
+        </button>
+
+        <!-- Navigation Links -->
+        <div class="nav-menu @NavMenuCssClass">
+            <ul class="nav-list">
+                <li class="nav-item">
+                    <NavLink class="nav-link" href="@AppRoutes.Dashboard" Match="NavLinkMatch.All">
+                        <i class="bi bi-speedometer2"></i> <span>@L["Dashboard"]</span>
+                    </NavLink>
+                </li>
+                <li class="nav-item">
+                    <NavLink class="nav-link" href="@AppRoutes.Request">
+                        <i class="bi bi-plus-circle"></i> <span>@L["Request"]</span>
+                    </NavLink>
+                </li>
+                <li class="nav-item">
+                    <NavLink class="nav-link" href="@AppRoutes.Workflow">
+                        <i class="bi bi-plus-circle"></i> <span>@L["Workflow"]</span>
+                    </NavLink>
+                </li>
+                <li class="nav-item">
+                    <NavLink class="nav-link" href="@AppRoutes.Configurations">
+                        <i class="bi bi-plus-circle"></i> <span>@L["Configurations"]</span>
+                    </NavLink>
+                </li>
+                <li class="nav-item">
+                    <NavLink class="nav-link" @onlick="">
+                        <i class="bi bi-plus-circle"></i> <span>@L["Munual"]</span>
+                    </NavLink>
+                </li>
+            </ul>
+        </div>
+
+        <div class="nav-actions">
+            <i class="i-btn-icon text-danger fa-solid fa-circle-user" style="font-size: 1.3rem"></i>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <article class="content">
+            @Body
+        </article>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <span>&copy; @DateTime.UtcNow.Year TalkToMe Digital • @L["FooterComplaintSystem"]</span>
+        </div>
+    </footer>
+</div>
+
+<!-- Error UI -->
+<div id="blazor-error-ui" data-nosnippet>
+    <div class="error-content">
+        <span class="error-icon">⚠️</span>
+        <span>An unhandled error has occurred.</span>
+        <a href="." class="reload">Reload</a>
+        <button class="dismiss" @onclick="DismissError">🗙</button>
+    </div>
+</div>
+
+@code {
+    private bool collapseNavMenu = true;
+
+    private string? NavMenuCssClass => collapseNavMenu ? "collapsed" : "expanded";
+
+    private void ToggleNavMenu()
+    {
+        collapseNavMenu = !collapseNavMenu;
+    }
+
+    private void OnManual()
+    {
+        try
+        {
+
+        }
+        catch (Exception ex)
+        {
+            LogError("OnManual", ex.Message);
+        }
+    }
+
+    private void DismissError()
+    {
+    }
+
+    private void LogError(string fn, string msg)
+    {
+        LoggerHelper.WriteLog($"MainLayout -> {fn}", msg);
+    }
+}
