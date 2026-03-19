@@ -1,5 +1,9 @@
 ﻿using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
+<<<<<<< HEAD
+=======
+using Microsoft.IdentityModel.Tokens;
+>>>>>>> c5e64a8 (Implement user login system)
 using System.Security.Claims;
 using TalkToMe.Shared.IService;
 
@@ -56,7 +60,11 @@ namespace TalkToMe.Endpoints
                 try
                 {
                     var auth = await authAD.LoginADAsync(username, password);
+<<<<<<< HEAD
                     if (auth == null)
+=======
+                    if (string.IsNullOrEmpty(auth.EmpId) || string.IsNullOrEmpty(auth.Name))
+>>>>>>> c5e64a8 (Implement user login system)
                         return Results.Redirect($"/login?returnUrl={Uri.EscapeDataString(returnUrl ?? "/")}&error=badcredentials");
 
                     var midnight = DateTime.UtcNow.Date.AddDays(1);
@@ -107,7 +115,10 @@ namespace TalkToMe.Endpoints
                 }
             })
             .WithDisplayName("AuthSignInPost")
+<<<<<<< HEAD
             .DisableAntiforgery()
+=======
+>>>>>>> c5e64a8 (Implement user login system)
             .RequireRateLimiting("login");
 
             auth.MapPost("/sign-out", async (HttpContext ctx) =>

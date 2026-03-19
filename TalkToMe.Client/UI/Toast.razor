@@ -17,7 +17,10 @@
 
     protected override void OnInitialized()
     {
+<<<<<<< HEAD
         // เริ่มดักฟังเมื่อ Component ถูกสร้าง
+=======
+>>>>>>> c5e64a8 (Implement user login system)
         ToastService.OnShow += HandleShow;
     }
 
@@ -27,7 +30,10 @@
         _toasts.Add(toast);
         InvokeAsync(StateHasChanged);
 
+<<<<<<< HEAD
         // ตั้งเวลาลบ
+=======
+>>>>>>> c5e64a8 (Implement user login system)
         _ = Task.Delay(4000).ContinueWith(_ => {
             _toasts.Remove(toast);
             InvokeAsync(StateHasChanged);
@@ -36,7 +42,10 @@
 
     public void Dispose()
     {
+<<<<<<< HEAD
         // สำคัญมาก: ต้องยกเลิกการดักฟังเมื่อเลิกใช้ เพื่อป้องกัน Memory Leak
+=======
+>>>>>>> c5e64a8 (Implement user login system)
         ToastService.OnShow -= HandleShow;
     }
 }

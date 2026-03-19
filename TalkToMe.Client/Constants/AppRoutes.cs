@@ -4,7 +4,11 @@
     {
         public const string Home = "";
 
+<<<<<<< HEAD
         public const string Dashboard = "management";
+=======
+        public const string Dashboard = "dashboard";
+>>>>>>> c5e64a8 (Implement user login system)
 
         public const string Request = "request";
 

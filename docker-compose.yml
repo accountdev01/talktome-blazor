@@ -5,7 +5,7 @@ services:
     ports:
       - "8080:8080"
     volumes:
-      - ./mylogs:/app/logs # Map โฟลเดอร์ logs ในเครื่อง เข้ากับใน Container
+      - ./mylogs:/app/logs
     environment:
       - DOTNET_ENVIRONMENT=Development
     restart: always

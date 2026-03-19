@@ -16,16 +16,33 @@
 
                 <div class="mb-3">
                     <label class="form-label text-dark fw-medium">@L["Username"]</label>
+<<<<<<< HEAD
                     <input type="text" id="Username" name="Username" class="form-control form-control-lg custom-input" placeholder="@L["EnterUsername"]">
+=======
+                    <input type="text" id="Username" name="Username" class="form-control form-control-lg custom-input" placeholder="@L["EnterUsername"]" required>
+>>>>>>> c5e64a8 (Implement user login system)
                 </div>
 
                 <div class="mb-4">
                     <div class="d-flex justify-content-between">
                         <label class="form-label text-dark fw-medium">@L["Password"]</label>
                     </div>
+<<<<<<< HEAD
                     <input type="password" id="Password" name="Password" class="form-control form-control-lg custom-input" placeholder="•••••••••••" min="12">
                 </div>
 
+=======
+                    <input type="password" id="Password" name="Password" class="form-control form-control-lg custom-input" placeholder="•••••••••••" minlength="12" required>
+                </div>
+
+                @if (!string.IsNullOrEmpty(Error))
+                {
+                    <div class="alert alert-danger mb-4 border-0 shadow-sm" style="border-radius: 12px;">
+                        <i class="bi bi-exclamation-triangle-fill me-2"></i> @GetErrorMessage(Error)
+                    </div>
+                }
+
+>>>>>>> c5e64a8 (Implement user login system)
                 <button type="submit" class="btn btn-danger btn-lg w-100 py-3 fw-bold mt-2 shadow-danger">
                     @L["SignIn"]
                 </button>
@@ -39,6 +56,10 @@
     private string? Password { get; set; }
 
     [SupplyParameterFromQuery(Name = "ReturnUrl")] private string ReturnUrl { get; set; } = "/";
+<<<<<<< HEAD
+=======
+    [SupplyParameterFromQuery] public string? Error { get; set; }
+>>>>>>> c5e64a8 (Implement user login system)
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
@@ -55,6 +76,18 @@
         }
     }
 
+<<<<<<< HEAD
+=======
+    private string GetErrorMessage(string code) => code switch
+    {
+        "badcredentials" => "ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง",
+        "badpayload" => "ข้อมูลที่ส่งมาไม่ถูกต้อง",
+        "unsupported" => "ไม่รองรับรูปแบบการส่งข้อมูล",
+        "internal" => "เกิดข้อผิดพลาดภายในระบบ กรุณาลองใหม่ภายหลัง",
+        _ => "เกิดข้อผิดพลาดไม่ทราบสาเหตุ"
+    };
+
+>>>>>>> c5e64a8 (Implement user login system)
     private void LogError(string fn, string msg)
     {
         LoggerHelper.WriteLog($"Login -> {fn}", msg);
